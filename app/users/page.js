@@ -8,12 +8,12 @@ export default function UsersPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  async function fetchUsers(email = "") {
+  async function fetchUsers(query) {
     try {
       setLoading(true);
       setError("");
 
-      const res = await fetch(`/api/users?email=${email}`);
+      const res = await fetch(`/api/users?q=${query}`);
 
       
       if (!res.ok) {
@@ -58,7 +58,7 @@ export default function UsersPage() {
       {/* Search */}
       <input
         className="border p-2 rounded-md mb-6 w-full max-w-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        placeholder="Search by email..."
+        placeholder="Search by user..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />

@@ -12,14 +12,19 @@ export default function AddUser() {
   async function handleSubmit(e) {
     e.preventDefault();
   
-    await fetch("http://localhost:3000/api/users", {
+    const res = await fetch("http://localhost:3000/api/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(form),
     });
-    console.log("req send"); 
+       const data = await res.json();
+     if(data.success){
+       alert(data.message);
+     } else{ 
+      alert(data.error);
+     }
 
     setForm({ name: "", email: "", phone: "" });
   }
